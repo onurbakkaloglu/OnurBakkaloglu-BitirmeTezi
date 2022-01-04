@@ -1,0 +1,68 @@
+﻿@page "/admin/blogs"
+@page "/admin"
+@using ÜniversiteSite.Models;
+@inherits OwningComponentBase<IBlogRepository>
+
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <td />
+        </tr>
+    </thead>
+    <tbody>
+        @if (BlogData?.Count() > 0)
+        {
+@foreach (Blog p in BlogData)
+{
+<tr>
+    <td>@p.Id</td>
+    <td>@p.BlogTitle</td>
+    <td>@p.BlogContent</td>
+    <td>
+        <NavLink class="btn btn-info btn-sm"
+                 href="@GetDetailsUrl(p.Id)">
+            Details
+        </NavLink>
+        <NavLink class="btn btn-warning btn-sm"
+                 href="@GetEditUrl(p.Id)">
+            Edit
+        </NavLink>
+        <button class="btn btn-danger btn-sm"
+                @onclick="@(e => DeleteBlog(p))">
+            Delete
+        </button>
+    </td>
+</tr>} }
+            else
+            {
+<tr>
+    <td colspan="5" class="text-center">No Products</td>
+</tr>}
+    </tbody>
+</table>
+
+<NavLink class="btn btn-primary" href="/admin/blogs/create">Create</NavLink>
+
+@code{ public IBlogRepository Repository => Service;
+
+    public IEnumerable<Blog> BlogData { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+    public async Task UpdateData()
+    {
+        BlogData = await Repository.Blogs.ToListAsync();
+    }
+    public async Task DeleteBlog(Blog p)
+    {
+        Repository.DeleteBlog(p);
+        await UpdateData();
+    }
+    public string GetDetailsUrl(int id) => $"/admin/blogs/details/{id}";
+    public string GetEditUrl(int id) => $"/admin/blogs/editblog/{id}"; }

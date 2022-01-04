@@ -1,0 +1,40 @@
+﻿<div class="container-fluid sidebar">
+    <div class="row">
+        <div style="text-align:center;">
+            <img style="width:50%;" src="/images/logo2.png" />
+        </div>
+       <NavLink class="btn btn-primary btn-block"
+                 href="/admin/blogs"
+                 ActiveClass="btn-primary text-white"
+                 Match="NavLinkMatch.Prefix">
+            Bloglar
+        </NavLink>
+    </div>
+    <div class="row">
+        <NavLink class="btn btn-primary btn-block"
+                 href="/admin/menus"
+                 ActiveClass="btn-primary text-white"
+                 Match="NavLinkMatch.Prefix">
+            Menüler
+        </NavLink>
+    </div>
+    <div class="row">
+        <NavLink class="btn btn-primary btn-block"
+                 href="/admin/faculties"
+                 ActiveClass="btn-primary text-white"
+                 Match="NavLinkMatch.Prefix">
+            Fakülteler
+        </NavLink>
+    </div>
+
+</div>
+    @code { }
+<style>
+    .sidebar .row{
+        margin-bottom: 2%;
+        margin-top: 5%;
+    }
+    .sidebar {
+        height:100vh;
+    }
+</style>

@@ -1,0 +1,30 @@
+﻿@page "/admin/blogs/details/{id:int}"
+
+<h3 class="bg-primary text-white text-center p-1">Details</h3>
+
+<table class="table table-sm table-bordered table-striped">
+    <tbody>
+        <tr><th>ID</th><td>@Blog.Id</td></tr>
+        <tr><th>Name</th><td>@Blog.BlogTitle</td></tr>
+        <tr><th>Description</th><td>@Blog.BlogContent</td></tr>
+        <tr><th>Category</th><td>@Blog.BlogDate</td></tr>
+    </tbody>
+</table>
+
+<NavLink class="btn btn-warning" href="@EditUrl">Edit</NavLink>
+<NavLink class="btn btn-secondary" href="/admin/blogs">Back</NavLink>
+
+@code { [Inject]
+            public IBlogRepository Repository { get; set; }
+
+            [Parameter]
+            public int Id { get; set; }
+
+            public Blog Blog { get; set; }
+
+            protected override void OnParametersSet()
+            {
+                Blog = Repository.Blogs.FirstOrDefault(p => p.Id == Id);
+            }
+
+            public string EditUrl => $"/admin/blogs/editblog/{Blog.Id}"; }

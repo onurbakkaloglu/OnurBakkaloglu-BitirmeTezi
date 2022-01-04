@@ -1,0 +1,65 @@
+﻿@page "/admin/blogs/editblog/{id:int}"
+@page "/admin/blogs/create"
+@inherits OwningComponentBase<IBlogRepository>
+
+<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText a Product</h3>
+<EditForm Model="Blog" OnValidSubmit="SaveBlog">
+    @if (Blog.Id != 0)
+    {
+<div class="form-group">
+    <label>ID</label>
+    <input class="form-control" disabled value="@Blog.Id" />
+</div>}
+    <div class="form-group">
+        <label>Name</label>
+        <InputText class="form-control" @bind-Value="Blog.BlogTitle" />
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <InputText class="form-control" @bind-Value="Blog.BlogContent" />
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <InputNumber class="form-control" disabled @bind-Value="Blog.BlogDate" />
+    </div>
+    <button type="submit" class="btn btn-@ThemeColor">Save</button>
+    <NavLink class="btn btn-secondary" href="/admin/products">Cancel</NavLink>
+</EditForm>
+
+
+
+@code {
+    public IBlogRepository Repository => Service;
+
+    [Inject]
+    public NavigationManager NavManager { get; set; }
+
+    [Parameter]
+    public int Id { get; set; } = 0;
+
+    public Blog Blog { get; set; } = new Blog();
+
+    protected override void OnParametersSet()
+    {
+        if (Id != 0)
+        {
+            Blog = Repository.Blogs.FirstOrDefault(p => p.Id == Id);
+        }
+    }
+
+    public void SaveBlog()
+    {
+        if (Id == 0)
+        {
+            Repository.CreateBlog(Blog);
+        }
+        else
+        {
+            Repository.SaveBlog(Blog);
+        }
+        NavManager.NavigateTo("/admin/blogs");
+    }
+
+    public string ThemeColor => Id == 0 ? "primary" : "warning";
+    public string TitleText => Id == 0 ? "Create" : "Edit";
+}

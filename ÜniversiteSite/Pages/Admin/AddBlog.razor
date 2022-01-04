@@ -1,0 +1,60 @@
+﻿@page "/admin/addblog/{id:long}"
+<h3 class="bg-info text-white text-center p-1">Details</h3>
+
+<table class="table table-sm table-bordered table-striped">
+    <tbody>
+        <tr><th>ID</th><td>@Blog.Id</td></tr>
+        <tr><th>Name</th><td>@Blog.BlogTitle</td></tr>
+        <tr><th>Description</th><td>@Blog.BlogContent</td></tr>
+        <tr><th>Category</th><td>@Blog.BlogStatus</td></tr>
+    </tbody>
+</table>
+
+<NavLink class="btn btn-warning" href="@EditUrl">Edit</NavLink>
+<NavLink class="btn btn-secondary" href="/admin/products">Back</NavLink>
+
+@code {
+    [Inject]
+    public IBlogRepository Repository { get; set; }
+
+    [Parameter]
+    public long Id { get; set; }
+
+    public Blog Blog { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        Blog = Repository.Blogs.FirstOrDefault(p => p.Id == Id);
+    }
+
+    public string EditUrl => $"/admin/products/edit/{Blog.Id}";
+
+
+    //Blog Blog = new Blog();
+    //List<Blog> Blogs = new List<Blog>();
+
+    //private void LoadBlogs()
+    //{
+    //    Blogs = new List<Blog>();
+    //    Blogs = blogrepository.Gets();
+    //}
+    //private void GetBlog(int id)
+    //{
+    //    Blog = blogrepository.Get(id);
+    //}
+    //private void DeleteBlog(int id)
+    //{
+    //    string message = blogrepository.Delete(id);
+    //}
+    //private void SaveBlog()
+    //{
+    //    if (Blog.Id == 0) Blog = blogrepository.Save(Blog);
+    //    else Blog = blogrepository.Update(Blog);
+    //    LoadBlogs();
+    //}
+    //private void SetBlogValue(Blog blog)
+    //{
+    //    Blog = blog;
+    //}
+
+}

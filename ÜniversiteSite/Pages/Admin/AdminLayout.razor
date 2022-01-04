@@ -1,0 +1,29 @@
+﻿@inherits LayoutComponentBase
+
+<div style="background-color: #00acee" class="text-white p-2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <span class="navbar-brand ml-2">Düzce Üniversitesi Admin</span>
+            </div>
+            <div class="col-2 text-right">
+                <a class="btn btn-sm btn-danger" href="/account/logout">Çıkış Yap</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 NavSidebar">
+            <Sidebar/>
+        </div>
+        <div class="col">
+            @Body
+        </div>
+    </div>
+</div>
+<style>
+    .NavSidebar {
+        background-color: #f2f2f2;
+    }
+</style>
