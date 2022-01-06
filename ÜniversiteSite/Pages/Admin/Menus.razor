@@ -1,6 +1,64 @@
 ﻿@page "/admin/menus"
-<h3>Menus</h3>
+@using ÜniversiteSite.Models;
+@inherits OwningComponentBase<IMenuRepository>
+
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Menü Adı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (MenuData?.Count() > 0)
+        {
+@foreach (Menu p in MenuData)
+{
+<tr>
+    <td>@p.Id</td>
+    <td>@p.MenuName</td>
+    <td>@p.MenuStatus</td>
+    <td>
+        <NavLink class="btn btn-warning btn-sm"
+                 href="@GetEditUrl(p.Id)">
+            Düzenle
+        </NavLink>
+        <button class="btn btn-danger btn-sm"
+                @onclick="@(e => DeleteMenu(p))">
+            Sil
+        </button>
+    </td>
+</tr>
+} }
+else
+{
+<tr>
+    <td colspan="5" class="text-center">Menü yok!</td>
+</tr>
+}
+    </tbody>
+</table>
+
+<NavLink class="btn btn-primary" href="/admin/menu/create">Yeni Menü</NavLink>
 
 @code {
+    public IMenuRepository Repository => Service;
 
+    public IEnumerable<Menu> MenuData { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+    public async Task UpdateData()
+    {
+        MenuData = await Repository.Menus.ToListAsync();
+    }
+    public async Task DeleteMenu(Menu p)
+    {
+        Repository.DeleteMenu(p);
+        await UpdateData();
+    }
+
+    public string GetEditUrl(int id) => $"/admin/menu/edit/{id}";
 }

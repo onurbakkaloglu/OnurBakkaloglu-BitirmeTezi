@@ -34,7 +34,9 @@ namespace ÜniversiteSite
             services.AddMvc();
             services.AddDbContext<Context>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IBlogRepository, EfBlogRepository>();
+            services.AddScoped<IMenuRepository, EfMenuRepository>();
             services.AddSingleton<HttpClient>();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(x =>
                 {

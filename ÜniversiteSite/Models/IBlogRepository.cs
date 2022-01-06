@@ -11,5 +11,6 @@ namespace ÜniversiteSite.Models
         void SaveBlog(Blog p);
         void CreateBlog(Blog p);
         void DeleteBlog(Blog p);
+        List<Blog> GetBlog();
     }
 }

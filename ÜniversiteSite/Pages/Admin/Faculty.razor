@@ -1,6 +1,12 @@
-﻿@page "/admin/faculties"
-<h3>Faculty</h3>
+﻿@page "/admin/faculty"
+@using ÜniversiteSite.Models;
+@inherits OwningComponentBase<IFacultyRepository>
 
-@code {
 
-}
+
+@code{ public IFacultyRepository Repository => Service;
+    
+
+    
+    
+    }   

@@ -1,0 +1,54 @@
+﻿@page  "/admin/menu/edit/{id:int}"
+@page "/admin/menu/create"
+@inherits OwningComponentBase<IMenuRepository>
+
+<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText a Blogs</h3>
+<EditForm Model="Menu" OnValidSubmit="SaveMenu">
+    @if (Menu.Id != 0)
+    {
+<div class="form-group">
+    <label>ID</label>
+    <input class="form-control" disabled value="@Menu.Id" />
+</div>}
+    <div class="form-group">
+        <label>Blog Başlığı</label>
+        <InputText class="form-control" @bind-Value="@Menu.MenuName" />
+    </div>
+    <div style="margin-top: 1%;">
+        <button type="submit" class="btn btn-@ThemeColor">Kaydet</button>
+        <NavLink class="btn btn-secondary" href="/admin/menus">İptal</NavLink>
+    </div>
+</EditForm>
+
+@code {
+    public IMenuRepository Repository => Service;
+
+    [Inject]
+    public NavigationManager NavManager { get; set; }
+
+    [Parameter]
+    public int Id { get; set; } = 0;
+    public Menu Menu { get; set; } = new Menu();
+
+    protected override void OnParametersSet()
+    {
+        if (Id != 0)
+        {
+            Menu = Repository.Menus.FirstOrDefault(p => p.Id == Id);
+        }
+    }
+    public void SaveMenu()
+    {
+        if (Id == 0)
+        {
+            Repository.CreateMenu(Menu);
+        }
+        else
+        {
+            Repository.SaveMenu(Menu);
+        }
+        NavManager.NavigateTo("/admin/menus");
+    }
+    public string ThemeColor => Id == 0 ? "primary" : "warning";
+    public string TitleText => Id == 0 ? "Create" : "Edit";
+}

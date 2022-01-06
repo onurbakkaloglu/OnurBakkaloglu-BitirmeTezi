@@ -5,36 +5,36 @@ using System.Threading.Tasks;
 
 namespace ÜniversiteSite.Models
 {
-    public class EfBlogRepository: IBlogRepository
+    public class EfMenuRepository : IMenuRepository
     {
         private Context context;
-
-        public IQueryable<Blog> Blogs => context.Blogs;
-
-        public EfBlogRepository(Context ctx)
+        public IQueryable<Menu> Menus => context.Menus;
+        public EfMenuRepository(Context ctx)
         {
             context = ctx;
-        }    
-        public void SaveBlog(Blog p)
-        {
-            context.SaveChanges();
         }
 
-        public void CreateBlog(Blog p)
+        public void CreateMenu(Menu p)
         {
             context.Add(p);
             context.SaveChanges();
         }
 
-        public void DeleteBlog(Blog p)
+        public void DeleteMenu(Menu p)
         {
             context.Remove(p);
             context.SaveChanges();
         }
-        public List<Blog> GetBlog()
+
+        public List<Menu> GetMenus()
         {
-            var result = context.Blogs.ToList();
+            var result = context.Menus.ToList();
             return result;
+        }
+
+        public void SaveMenu(Menu p)
+        {
+            context.SaveChanges();
         }
     }
 }
