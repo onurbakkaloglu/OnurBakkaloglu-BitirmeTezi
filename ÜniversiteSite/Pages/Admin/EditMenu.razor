@@ -2,7 +2,7 @@
 @page "/admin/menu/create"
 @inherits OwningComponentBase<IMenuRepository>
 
-<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText a Blogs</h3>
+<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText</h3>
 <EditForm Model="Menu" OnValidSubmit="SaveMenu">
     @if (Menu.Id != 0)
     {

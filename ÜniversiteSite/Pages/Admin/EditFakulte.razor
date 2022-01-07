@@ -2,7 +2,7 @@
 @page "/admin/edit/create"
 @inherits OwningComponentBase<IFakulteRepository>
 
-<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText a Fakulte</h3>
+<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText</h3>
 <EditForm Model="Fakulte" OnValidSubmit="SaveFakulte">
     @if (Fakulte.Id != 0)
     {
