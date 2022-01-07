@@ -1,0 +1,64 @@
+﻿@page "/admin/fakulte"
+@using ÜniversiteSite.Models;
+@inherits OwningComponentBase<IFakulteRepository>
+
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fakülte Adı</th>
+            <td />
+        </tr>
+    </thead>
+    <tbody>
+        @if (FakulteData?.Count() > 0)
+        {
+@foreach (ÜniversiteSite.Models.Fakulte p in FakulteData)
+{
+<tr>
+    <td>@p.Id</td>
+    <td>@p.FakulteName</td>
+    <td>
+        <NavLink class="btn btn-warning btn-sm"
+                 href="@GetEditUrl(p.Id)">
+            Düzenle
+        </NavLink>
+        <button class="btn btn-danger btn-sm"
+                @onclick="@(e => DeleteFakulte(p))">
+            Sil
+        </button>
+    </td>
+</tr>
+} }
+else
+{
+<tr>
+    <td colspan="5" class="text-center">Fakülte Yok!</td>
+</tr>
+}
+    </tbody>
+</table>
+
+<NavLink class="btn btn-primary" href="/admin/blogs/create">Yeni Fakülte</NavLink>
+
+
+@code {
+    public IFakulteRepository Repository => Service;
+
+    public IEnumerable<ÜniversiteSite.Models.Fakulte> FakulteData { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+    public async Task UpdateData()
+    {
+        FakulteData = await Repository.Fakultes.ToListAsync();
+    }
+    public async Task DeleteFakulte(ÜniversiteSite.Models.Fakulte p)
+    {
+        Repository.DeleteFakulte(p);
+        await UpdateData();
+    }
+    public string GetEditUrl(int id) => $"/admin/fakulte/edit/{id}";
+}

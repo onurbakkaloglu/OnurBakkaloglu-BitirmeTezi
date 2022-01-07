@@ -2,7 +2,7 @@
 @page "/admin/blogs/create"
 @inherits OwningComponentBase<IBlogRepository>
 
-<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText a Blogs</h3>
+<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText</h3>
 <EditForm Model="Blog" OnValidSubmit="SaveBlog">
     @if (Blog.Id != 0)
     {
@@ -18,8 +18,8 @@
         <label>Blog Açıklaması</label>
         <InputText class="form-control" @bind-Value="@Blog.BlogContent" />
     </div>
-    <button type="submit" class="btn btn-@ThemeColor">Save</button>
-    <NavLink class="btn btn-secondary" href="/admin/blogs">Cancel</NavLink>
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <NavLink class="btn btn-danger" href="/admin/blogs">İptal</NavLink>
 </EditForm>
 
 
@@ -57,5 +57,5 @@
     }
 
     public string ThemeColor => Id == 0 ? "primary" : "warning";
-    public string TitleText => Id == 0 ? "Create" : "Edit";
+    public string TitleText => Id == 0 ? "Yeni Blog" : "Düzenle";
 }

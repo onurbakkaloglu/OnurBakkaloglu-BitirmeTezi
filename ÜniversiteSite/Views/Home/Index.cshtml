@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model List<ÜniversiteSite.Models.Blog>
+@model List<ÜniversiteSite.Models.Fakulte>
 
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
@@ -21,99 +21,16 @@
     <section id="featured-services" class="featured-services">
         <div class="container" data-aos="fade-up">
             <h1>Fakültelerimiz</h1>
-            @foreach (var item in Model)
-            {
-                <span>@item.BlogTitle</span>
-            }
             <div style="margin-bottom:2%;" class="row">
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                        <div class="icon"><i class='bx bxl-dribbble'></i></div>
-                        <h4 class="title"><a href="">Akçakoca Bey Siyasal Bilgiler Fakültesi</a></h4>
+                @foreach (var item in Model)
+                {
+                    <div style="margin-bottom:2% !important;" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                            <div class="icon"><i class='bi bi-bank'></i></div>
+                            <h4 class="title"><a href="">@item.FakulteName</a></h4>
+                        </div>
                     </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                        <div class="icon"><i class="bx bx-file"></i></div>
-                        <h4 class="title"><a href="">Eğitim Fakültesi</a></h4>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-                        <div class="icon"><i class="bx bx-tachometer"></i></div>
-                        <h4 class="title"><a href="">Fen Edebiyat Fakültesi</a></h4>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
-                        <div class="icon"><i class="bx bx-world"></i></div>
-                        <h4 class="title"><a href="">İlahiyat Fakültesi</a></h4>
-                    </div>
-                </div>
-
-            </div>
-            <div style="margin-bottom:2%;" class="row">
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                        <div class="icon"><i class='bx bxl-dribbble'></i></div>
-                        <h4 class="title"><a href="">İşletme Fakültesi</a></h4>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                        <div class="icon"><i class="bx bx-file"></i></div>
-                        <h4 class="title"><a href="">Mühendislik Fakültesi</a></h4>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-                        <div class="icon"><i class="bx bx-tachometer"></i></div>
-                        <h4 class="title"><a href="">Orman Fakültesi</a></h4>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
-                        <div class="icon"><i class="bx bx-world"></i></div>
-                        <h4 class="title"><a href="">Sağlık Bilimleri Fakültesi</a></h4>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                        <div class="icon"><i class='bx bxl-dribbble'></i></div>
-                        <h4 class="title"><a href="">Sanat ve Tasarım Fakültesi</a></h4>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                        <div class="icon"><i class="bx bx-file"></i></div>
-                        <h4 class="title"><a href="">Spor Bilimleri Fakültesi</a></h4>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-                        <div class="icon"><i class="bx bx-tachometer"></i></div>
-                        <h4 class="title"><a href="">Tıp Fakültesi</a></h4>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
-                        <div class="icon"><i class="bx bx-world"></i></div>
-                        <h4 class="title"><a href="">Ziraat Fakültesi</a></h4>
-                    </div>
-                </div>
-
+                }             
             </div>
 
         </div>
@@ -474,34 +391,9 @@
 
             <div class="row" data-aos="fade-up" data-aos-delay="100">
 
-                <div class="col-lg-6 ">
+                <div class="col-lg-12 ">
                     <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12062.190686728207!2d31.1751022!3d40.9037361!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xeb421a6422f81e6d!2zRMO8emNlIMOcbml2ZXJzaXRlc2k!5e0!3m2!1str!2str!4v1639521865854!5m2!1str!2str" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
-                </div>
-
-                <div class="col-lg-6">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                        <div class="row">
-                            <div class="col form-group">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Adınız" required>
-                            </div>
-                            <div class="col form-group">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Email hesabınız" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Konu" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Mesaj" required></textarea>
-                        </div>
-                        <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
-                        <div class="text-center"><button type="submit">Mail Gönder</button></div>
-                    </form>
-                </div>
+                </div>    
 
             </div>
 

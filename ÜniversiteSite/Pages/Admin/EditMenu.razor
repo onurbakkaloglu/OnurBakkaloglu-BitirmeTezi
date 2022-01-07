@@ -15,7 +15,7 @@
         <InputText class="form-control" @bind-Value="@Menu.MenuName" />
     </div>
     <div style="margin-top: 1%;">
-        <button type="submit" class="btn btn-@ThemeColor">Kaydet</button>
+        <button type="submit" class="btn btn-success">Kaydet</button>
         <NavLink class="btn btn-secondary" href="/admin/menus">İptal</NavLink>
     </div>
 </EditForm>
@@ -50,5 +50,5 @@
         NavManager.NavigateTo("/admin/menus");
     }
     public string ThemeColor => Id == 0 ? "primary" : "warning";
-    public string TitleText => Id == 0 ? "Create" : "Edit";
+    public string TitleText => Id == 0 ? "Yeni Menü" : "Düzenle";
 }

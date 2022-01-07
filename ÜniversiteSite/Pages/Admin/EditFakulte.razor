@@ -1,0 +1,55 @@
+﻿@page "/admin/fakulte/edit/{id:int}"
+@page "/admin/edit/create"
+@inherits OwningComponentBase<IFakulteRepository>
+
+<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText a Fakulte</h3>
+<EditForm Model="Fakulte" OnValidSubmit="SaveFakulte">
+    @if (Fakulte.Id != 0)
+    {
+<div class="form-group">
+    <label>ID</label>
+    <input class="form-control" disabled value="@Fakulte.Id" />
+</div>}
+    <div class="form-group">
+        <label>Blog Başlığı</label>
+        <InputText class="form-control" @bind-Value="@Fakulte.FakulteName" />
+    </div>
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <NavLink class="btn btn-danger" href="/admin/fakulte">İptal</NavLink>
+</EditForm>
+
+@code {
+    public IFakulteRepository Repository => Service;
+
+    [Inject]
+    public NavigationManager NavManager { get; set; }
+
+    [Parameter]
+    public int Id { get; set; } = 0;
+
+    public Models.Fakulte Fakulte { get; set; } = new Models.Fakulte();
+
+    protected override void OnParametersSet()
+    {
+        if (Id != 0)
+        {
+            Fakulte = Repository.Fakultes.FirstOrDefault(p => p.Id == Id);
+        }
+    }
+
+    public void SaveFakulte()
+    {
+        if (Id == 0)
+        {
+            Repository.CreateFakulte(Fakulte);
+        }
+        else
+        {
+            Repository.SaveFakulte(Fakulte);
+        }
+        NavManager.NavigateTo("/admin/fakulte");
+    }
+
+    public string ThemeColor => Id == 0 ? "primary" : "warning";
+    public string TitleText => Id == 0 ? "Yeni Fakülte" : "Düzenle";
+}

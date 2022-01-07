@@ -13,18 +13,18 @@ namespace ÜniversiteSite.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IBlogRepository _blogRepository;
+        private readonly IFakulteRepository _fakulteRepository;
 
-        public HomeController(ILogger<HomeController> logger, IBlogRepository blogRepository)
+        public HomeController(ILogger<HomeController> logger, IFakulteRepository fakulteRepository)
         {
             _logger = logger;
-            _blogRepository = blogRepository;
+            _fakulteRepository = fakulteRepository;
         }
 
        
         public IActionResult Index()
         {
-            var blogResult = _blogRepository.GetBlog();
+            var blogResult = _fakulteRepository.GetFakultes();
             return View(blogResult);
         }
 

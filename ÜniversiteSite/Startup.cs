@@ -35,6 +35,7 @@ namespace ÜniversiteSite
             services.AddDbContext<Context>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IBlogRepository, EfBlogRepository>();
             services.AddScoped<IMenuRepository, EfMenuRepository>();
+            services.AddScoped<IFakulteRepository, EfFakulteRepository>();
             services.AddSingleton<HttpClient>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -72,7 +73,7 @@ namespace ÜniversiteSite
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
             });
-            SeedData.EnsurePopulated(app);
+            
         }
     }
 }

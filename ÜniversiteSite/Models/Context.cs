@@ -17,13 +17,13 @@ namespace ÜniversiteSite.Models
 
         }
         public DbSet<Blog> Blogs { get; set; }
-        public DbSet<Login> Logins { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("server=CASPERNIRVANA;database=UniversityDb; integrated security=true");
-        //}
-        //public DbSet<Login> Logins { get; set; }
+        public DbSet<Fakulte> Fakultes { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("server=CASPERNIRVANA;database=UniversityDb2; integrated security=true");
+        }
+        public DbSet<Login> Logins { get; set; }
     }
 }
